@@ -11,7 +11,7 @@ if __OCLPY_SETUP__:
     sys.stderr.write('Running from oclpy source directory.\n')
 else:
     try:
-        from ompy.rebin import *
+        from oclpy.rebin import *
     except ImportError:
         msg = """Error importing oclpy: you should not try to import oclpy from
         its source directory; please exit the oclpy source tree, and relaunch
@@ -24,7 +24,7 @@ else:
 
 # Simply import all functions and classes from all files to make them available
 # at the package level
-from .library import div0, fill_negative
+from .library import div0, fill_negative, parallelize_dataframe
 from .abstractarray import AbstractArray
 from .matrix import Matrix
 from .vector import Vector

@@ -3,5 +3,5 @@
 #
 short_version = '0.8.0'
 version = '0.8.0'
-full_version = '0.8.0.dev0+2b625b8'
-git_revision = '2b625b8fa63cd7c6745ada67bef8725ad968dadd'
+full_version = '0.8.0.dev0+32e5425'
+git_revision = '32e5425642c74089cc481fa1a0f51c2096d80420'

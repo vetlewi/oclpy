@@ -39,14 +39,14 @@ class Range(Interpolation):
 		values, _, E = load_range(path)
 		super().__init__(E*1e3, values, kind='cubic', bounds_error=False, fill_value=(0,max(values)))
 
-class RangeTranfrorm:
+class RangeTransform:
 	def __init__(self,
 				 path: Union[str, Path]):
 		self.range = Range(path)
 
 	def __call__(self,
-				 de: np.ndarray,
-				 e: np.ndarray) -> np.ndarray:
+				 de,
+				 e):
 		"""
 		Expect the shape (n,2), returns (n,1)
 		"""

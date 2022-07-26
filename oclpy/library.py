@@ -32,6 +32,7 @@ from itertools import product
 from typing import Optional, Tuple, Iterator, Any
 import inspect
 import re
+import multiprocessing
 
 def div0(a, b):
     """ division function designed to ignore / 0, i.e. div0([-1, 0, 1], 0 ) -> [0, 0, 0] """
@@ -289,6 +290,23 @@ def annotate_heatmap(im, matrix, valfmt="{x:.2f}",
         texts.append(text)
 
     return texts
+
+def parallelize_dataframe(df, func, n_cores=multiprocessing.cpu_count()):
+    """
+    A helper function to parallelizing functions applied to dataframes.
+    Parameters
+    ----------
+        df: Dataframe that the function is applied on
+        func: Function applied to the dataframe
+        n_cores: Number of processes used
+    """
+
+    df_split = np.array_split(df, n_cores)
+    pool = multiprocessing.Pool(n_cores)
+    df = pd.concat(pool.map(func, df_split))
+    pool.close()
+    pool.join()
+    return df
 
 
 def diagonal_elements(matrix: np.ndarray) -> Iterator[Tuple[int, int]]:
